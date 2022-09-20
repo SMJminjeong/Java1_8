@@ -1,4 +1,4 @@
-package com.example.java1_8;
+package com.example.java1_8.lamda;
 
 
 import java.util.function.*;
