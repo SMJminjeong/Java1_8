@@ -52,4 +52,33 @@ public class Foo {
         Predicate<Integer> isOdd = (number) -> number%2 == 0;
 
     }
+
+    public void run() {
+        //baseNumber 라는 localVariable
+        //[Effective Final] final 값은 변경 못한다.
+        final int baseNumber = 10;
+
+        //[1] 내부(로컬) 클래스 : 메서드 내부에 정의한 클래스
+        class LocalClass{
+            void printBaseNumber(){
+                int baseNumber = 11;
+                System.out.println(baseNumber);
+            }
+        }
+
+        //[2] 익명클래스에서 LocalVariable 참조하는 것
+        Consumer<Integer> integerConsumer = new Consumer<Integer>() {
+            @Override
+            public void accept(Integer baseNumber) {
+                System.out.println(baseNumber);
+            }
+        };
+
+        //[3] 람다에서 LocalVariable 참조하는 것
+        IntConsumer printInt = (i) -> {
+            System.out.println(i + baseNumber);
+        };
+
+        printInt.accept(10);
+    }
 }
